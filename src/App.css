@@ -1,0 +1,57 @@
+/* App.css */
+
+/* Base container for themes */
+.theme-container {
+  transition: background-color 0.5s ease, color 0.5s ease;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Light theme */
+.theme-container.light {
+  background-color: #f3f3f3;
+  color: #000;
+}
+
+/* Dark theme */
+.theme-container.dark {
+  background-color: #2d2d2d;
+  color: #fff;
+}
+
+/* Animation for the theme switch with smooth transition from top left to bottom right */
+.theme-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* background: linear-gradient(45deg, #f3f3f3, #f3f3f3); */
+  z-index: 1000;
+}
+
+.theme-transition.active {
+  animation: theme-transition-animation 0.5s forwards;
+}
+
+/* Hide the transition effect when not active */
+.theme-transition.inactive {
+  display: none;
+}
+
+/* Keyframe animation logic */
+@keyframes theme-transition-animation {
+  0% {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  100% {
+    top: 100vh;
+    left: 100vw;
+    width: 0;
+    height: 0;
+  }
+}
