@@ -29,6 +29,7 @@ const GsapAnimation = () => {
       repeatDelay: 0.8,
     });
   });
+
   return (
     <div className="container space-y-2">
       <div id="box1" className="box w-[100px] h-[100px] bg-red-500"></div>
