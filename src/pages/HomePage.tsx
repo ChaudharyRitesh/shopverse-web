@@ -1,8 +1,4 @@
-// import { useState, useEffect } from "react";
-// import gsap from "gsap";
-// import useTheme from "../hooks/usetTheme";
-// import "../App.css";
-import GsapAnimation from "../animations/gsap/gsap";
+import { useStore } from "../zustand/useStore";
 
 const HomePage = () => {
   // const { setTheme, theme } = useTheme();
@@ -21,42 +17,38 @@ const HomePage = () => {
   //   localStorage.setItem("theme", theme === "light" ? "dark" : "light");
   // };
 
-  // gsap.to("#box1", {
-  //   x: 1000,
-  //   duration: 2,
-  //   delay: 2,
-  //   rotate: 360,
-  // });
-
-  // gsap.from("#box", { rotation: -360, x: -100, duration: 1 });
-
-  // gsap.fromTo("#box", { x: -100 }, { rotation: 360, x: 100, duration: 1 });
-
-  // gsap.to("#box1", {
-  //   // selector text, Array, or object
-  //   x: 1000, // any properties (not limited to CSS)
-  //   backgroundColor: "red", // camelCase
-  //   duration: 1.5, // seconds
-  //   delay: 1,
-  //   ease: "power2.inOut",
-  //   scale: 0.4,
-  //   stagger: 0.3, // stagger start times
-  //   paused: false, // default is false
-  //   overwrite: "auto", // default is false
-  //   repeat: 2, // number of repeats (-1 for infinite)
-  //   repeatDelay: 0.5, // seconds between repeats
-  //   repeatRefresh: true, // invalidates on each repeat
-  //   yoyo: true, // if true > A-B-B-A, if false > A-B-A-B
-  //   yoyoEase: true, // or ease like "power2"
-  //   immediateRender: false,
-  //   onComplete: () => {
-  //     console.log("finished");
-  //   },
-  // });
+  const { count, increment, decrement, reset, set } = useStore();
 
   return (
-    <div>
-      <GsapAnimation />
+    <div className="px-10 py-16">
+      {/* <GsapAnimation /> */}
+
+      <div className="space-y-2 space-x-2">
+        <p>You clicked {count} number of times.</p>
+
+        <button
+          className="py-2.5 px-4 rounded-md bg-slate-200"
+          onClick={increment}
+        >
+          increment
+        </button>
+        <button
+          className="py-2.5 px-4 rounded-md bg-slate-200"
+          onClick={decrement}
+          disabled={count === 0}
+        >
+          decrement
+        </button>
+        <button className="py-2.5 px-4 rounded-md bg-slate-200" onClick={reset}>
+          reset
+        </button>
+        <button
+          className="py-2.5 px-4 rounded-md bg-slate-200"
+          onClick={() => set(count + 10)}
+        >
+          set
+        </button>
+      </div>
     </div>
   );
 };
